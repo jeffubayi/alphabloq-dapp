@@ -5,7 +5,7 @@ export default function InventoryId() {
     return (
         <div>
             <Head>
-                <title>Inventory | id</title>
+                <title>Property | id</title>
             </Head>
 
         </div >

@@ -7,11 +7,8 @@ import toast from 'react-hot-toast';
 import CloseIcon from '@mui/icons-material/ArrowBackIos';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TransitionProps } from '@mui/material/transitions';
-// import { LocalizationProvider } from '@mui/x-date-pickers';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-// import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import { JokesValues } from "../../types";
 import {
