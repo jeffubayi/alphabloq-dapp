@@ -2,19 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-   images: {
-    domains: [
-      "pickupmtaani.com",
-      'd38vok79sctage.cloudfront.net',
-      'img.freepik.com',
-      'icons-for-free.com',
-      'dev.nuzo.co',
-      'scontent.fnbo9-1.fna.fbcdn.net',
-      'scontent.fnbo10-1.fna.fbcdn.net',
-      'cdn-icons-png.flaticon.com',
-      'is1-ssl.mzstatic.com'
-    ],
-  },
+  images: {
+    domains: ['img.freepik.com']
+  }
 }
 
 module.exports = nextConfig
+
