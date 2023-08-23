@@ -1,134 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import StarIcon from '@mui/icons-material/StarBorder';
-import { Button, Paper, IconButton, Avatar, Card, Stack, TextField, CardActions, CardContent, CardHeader, Container, Grid, Typography } from '@mui/material';
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import { Box, List, useMediaQuery } from '@mui/material';
+
+import ClientList from "../../components/customerList"
+import CardTitle from "../../components/addAction";
 import { supabase } from "../../utility/supabaseClient";
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
-import CloseIcon from '@mui/icons-material/ArrowBackIos';
+import Loader from "../../components/loader";
+import Fab from "../../components/Fab";
+import { Customers, Client } from "../../types";
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+export default  function Clients() {
+    const page = "Chat"
+    const [isLoading, setIsLoading] = useState(true)
+    const [clients, setClients] = useState<Customers | any>([])
+    const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
-export default function ChatDrawer() {
-  const [state, setState] = React.useState({
-    right: false,
-  });
-
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-      (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-          event.type === 'keydown' &&
-          ((event as React.KeyboardEvent).key === 'Tab' ||
-            (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-          return;
+    useEffect(() => {
+        const fetchClients = async () => {
+            const { data } = await supabase.from('clients').select(`*`);
+            setClients(data)
+            setIsLoading(false)
         }
 
-        setState({ ...state, [anchor]: open });
-      };
+        fetchClients()
+    }, [])
 
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+    if (!clients) {
+        return <p>No {page}s found.</p>
+    }
+    return (
+        <Box sx={{ p: 2 }}>
+            {isSmallScreen ? <Fab /> : <CardTitle title={page} /> }
+            {isLoading ? (<Loader />) : (
+                <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: "0.7rem" }}>
+                    {clients.map((client: Client) => (
+                        <div key={client.id} >
+                            <ClientList customer={client} />
+                        </div>
+                    ))}
+                </List>
+            )}
 
-  return (
-    <div>
-      {(['right', 'left', 'top', 'bottom'] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Card sx={{ m: 1, borderRadius: '0.5rem' }}>
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe">
-                  R
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings" onClick={toggleDrawer("right", true)}>
-                  <MarkChatUnreadIcon sx={{fill:'#9369E8'}}/>
-                </IconButton>
-              }
-              title="Tom Sawyer"
-              subheader="Whats the price for this estate..."
-            />
-          </Card>
-
-          <Drawer
-            anchor='right'
-            open={state[anchor]}
-            onClose={toggleDrawer('right', false)}
-          >
-            <Box
-              sx={{ width: 380 }}
-              role="presentation"
-            >
-              <Card >
-                <CardHeader
-                  avatar={
-                    <IconButton aria-label="settings" onClick={toggleDrawer("right", false)}>
-                    <CloseIcon  />
-                  </IconButton>
-                  }
-                  // action={
-                  //   <IconButton aria-label="settings">
-                  //     <MoreVertIcon />
-                  //   </IconButton>
-                  // }
-                  title="Tom Sawyer"
-                  subheader="Last Seen 1 hour ago"
-                />
-              </Card>
-              <Stack
-                direction="row" spacing={1} sx={{ p: 2 }}
-              >
-                <TextField placeholder='Type message' fullWidth size="small" />
-                <Button color="primary" variant="contained" size="small" onClick={toggleDrawer(anchor, false)} >Send</Button>
-              </Stack>
-            </Box>
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
-  );
+        </Box>
+    );
 }

@@ -3,9 +3,9 @@ import StarIcon from '@mui/icons-material/StarBorder';
 import { Button, Paper, Card, CardActions, CardContent, CardHeader, Container, Grid, Typography } from '@mui/material';
 import { useRouter } from "next/router";
 import PropertyList from "../../components/propertyList"
+import WalletList from '../../components/walletList'
 import fetchData from "../../utility/fetchData"
 import { Listing } from "../../types";
-import { supabase } from "../../utility/supabaseClient";
 
 export default function Reports() {
   const router = useRouter();
@@ -32,11 +32,11 @@ export default function Reports() {
       count: listings?.length,
     },
     {
-      title: "Total Sellers",
+      title: "Wallet Balance",
       count: order?.length,
     },
     {
-      title: "Wallet Balance",
+      title: "Total Sellers",
       count: client?.length,
     },
   ];
@@ -54,6 +54,7 @@ export default function Reports() {
             >
               <Card sx={{ borderRadius: "0.6rem", bgcolor: 'background.paper', }}>
                 <CardHeader
+
                   title={tier.count}
                   subheader={tier.title}
                   titleTypographyProps={{ align: 'center' }}
@@ -64,14 +65,15 @@ export default function Reports() {
               </Card>
             </Grid>
           ))}
-          <Grid
+           <Grid
             item
             xs={12}
             md={8}
           >
-            <Paper sx={{ p: 2, borderRadius: "0.7rem" }}>
-              Recent Listings
-              <PropertyList property={listings}/>
+            <Paper sx={{ borderRadius: "0.7rem" }}>
+              <WalletList
+              // property={listings}
+              />
             </Paper>
           </Grid>
           <Grid
@@ -79,10 +81,11 @@ export default function Reports() {
             xs={12}
             md={4}
           >
-            <Paper sx={{ p: 2, borderRadius: "0.7rem" }}>
-              Chats
+            <Paper sx={{ borderRadius: "0.7rem" }}>
+              <PropertyList property={listings} />
             </Paper>
           </Grid>
+         
           <Grid
             item
             xs={12}

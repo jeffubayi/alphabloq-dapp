@@ -14,7 +14,7 @@ export default function Listing() {
     const [isLoading, setIsLoading] = useState(true)
     const [listings, setListings] = useState<Listing | any>([])
     const isSmallScreen = useMediaQuery("(max-width: 600px)");
- console.log(`item`,listings)
+    
     useEffect(() => {
         fetchData(collection).then(function (listing) {
             setListings(listing);
@@ -27,7 +27,7 @@ export default function Listing() {
     }
     return (
         <Box sx={{ p: 2 }}>
-            {/* {isSmallScreen ? <Fab /> : <CardTitle title={page} />} */}
+            {/* {isSmallScreen ? <Fab /> : <CardTitle title={collection} />} */}
             {isLoading ? (<Loader />) : (
                 <Grid container spacing={3}>
                     {listings.map((listing: Listing) => (
