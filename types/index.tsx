@@ -1,54 +1,50 @@
-export type JokesState = {
-  id: number;
-  Title: string;
-  Author: string;
-  Body: string;
-  Views: number;
-  CreatedAt: Date | number;
-};
 
-export type JokesValues = {
-  id?: number | string | undefined;
-  Title: string | string[] | undefined;
-  Author: string | string[] | undefined;
-  Body?: string | string[] | undefined;
-  Views: string | string[] | undefined;
-  CreatedAt?: Date | string | string[];
-};
-
-export type Item = {
-  id?: string;
-  Price: number;
-  Collection: string;
-  Item: string;
-  Picture: string;
-  Description?: string;
-};
-
-export type Client = {
+//type definitions
+export type Chat = {
   id?: string;
   Phone: number;
   Contact?: string;
   Company?: string;
-  Title?:string;
+  Title?: string;
 };
 
-export type Customers = {
-  customer:Client;
+export type Sellers = {
+  chat: Chat;
 };
 
-export type Order = {
+export type Transaction = {
   id: string;
   TrackingCode?: string;
   Category?: string;
   CreatedAt?: Date;
- Status?:string;
+  Status?: string;
 };
 
-export type Orders = {
-  order:Order;
+export type Wallet = {
+  wallet: Transaction;
 };
 
-export type Inventory = {
-  product: Item;
-};
+
+export interface Listing  {
+  id: number,
+  image: string,
+  title: string,
+  location: string,
+  price: string | number,
+  rating: number,
+  favourite: boolean,
+  details: string,
+  about: string,
+  bath: number,
+  bed: number,
+  sqft: number,
+  shareUrl: string,
+  floor: number,
+  dsq: number,
+  roof: number,
+  villa: number,
+}
+
+export type Property = {
+  property: Listing,
+}
