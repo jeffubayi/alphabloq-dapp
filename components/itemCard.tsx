@@ -4,12 +4,12 @@ import { Inventory } from "../types"
 
 export default function ItemCard(product: Inventory) {
   return (
-    <Card sx={{ borderRadius: "0.7rem",maxWidth:150,minWidth:150, }} >
+    <Card sx={{ borderRadius: "0.4rem",maxWidth:250,minWidth:150, }} >
       <CardActionArea>
         <CardMedia
           component="img"
-          height="120"
-          width="40"
+          height="200"
+          width="50"
           image={product.product.Picture}
           alt="item image"
         />

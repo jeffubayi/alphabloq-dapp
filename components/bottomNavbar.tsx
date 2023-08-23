@@ -5,6 +5,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PeopleIcon from '@mui/icons-material/People';
 import { useRouter } from "next/router"; 
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import WalletIcon from '@mui/icons-material/Wallet';
+import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('recents');
@@ -23,19 +26,19 @@ export default function LabelBottomNavigation() {
         icon={<HomeIcon />}
       />
       <BottomNavigationAction
-        label="Property"
+        label="Listings"
         value="property"
-        icon={<InventoryIcon />}
+        icon={<LocationCityIcon />}
       />
        <BottomNavigationAction
         label="Wallet"
         value="wallet"
-        icon={<SendIcon />}
+        icon={<WalletIcon />}
       />
       <BottomNavigationAction
-        label="Profile"
-        value="settings"
-        icon={<PeopleIcon />}
+        label="Chat"
+        value="chat"
+        icon={<MarkChatUnreadIcon  />}
       />
     </BottomNavigation>
     </Paper>

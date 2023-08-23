@@ -9,10 +9,10 @@ import Image from 'next/image'
 import { useTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import SendIcon from '@mui/icons-material/Send';
 import HomeIcon from '@mui/icons-material/Home';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import PeopleIcon from '@mui/icons-material/People';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import WalletIcon from '@mui/icons-material/Wallet';
+import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 import { supabase } from "../utility/supabaseClient";
 import { toggleColorMode } from '../redux/themeSlice';
 import { clearUserProfile } from '../redux/userProfileSlice'
@@ -40,7 +40,6 @@ export default function Navbar() {
         const fetchOrders = async () => {
             const { data } = await supabase.from('profiles').select(`account`).eq('id', user?.id).single();
             setAccount(data?.account)
-            console.log(`user#######`, data)
 
         }
 
@@ -66,6 +65,13 @@ export default function Navbar() {
         dispatch(toggleColorMode());
     };
 
+    const navItems = [
+        { url: "/home", title: "Home", icon: <HomeIcon /> },
+        { url: "/property", title: "Listings", icon: <LocationCityIcon /> },
+        { url: "/wallet", title: "Wallet", icon: <WalletIcon /> },
+        { url: "/chat", title: "Chat", icon: <MarkChatUnreadIcon /> },
+    ]
+
     return (
         <React.Fragment>
             <AppBar
@@ -75,36 +81,36 @@ export default function Navbar() {
             >
                 <Toolbar sx={{ flexWrap: 'wrap' }}>
 
-                    <Image src={theme.palette.mode === 'dark' ? "/alpha-dark.png":"/alpha.png"} alt="logo" width={100} height={30} quality={97} />
+                    <Image src={theme.palette.mode === 'dark' ? "/alpha-dark.png" : "/alpha.png"} alt="logo" width={100} height={30} quality={97} />
                     {/* <Avatar src="alpha.png" sx={{ width: "6rem", height: "3rem",mr:1 }} /> */}
                     <Typography variant="subtitle1" color="inherit" noWrap sx={{ flexGrow: 1 }}>
                         {/* AlphabloQ */}
                     </Typography>
                     {session && !isSmallScreen && currentRoute !== "/" && (
                         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                            <MenuItem onClick={() => router.push("/home")}>
+                            <MenuItem onClick={() => router.push("/home")} sx={{ color: currentRoute === "/home" ? "text.primary" : "text.secondary" }}>
                                 <ListItemIcon>
-                                    <HomeIcon fontSize="small" color="secondary" />
+                                    <HomeIcon fontSize="small" sx={{ fill: currentRoute === "/home" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
                                 Home
                             </MenuItem>
-                            {/* <MenuItem onClick={() => router.push("/inventory")}>
+                            <MenuItem onClick={() => router.push("/listings")} sx={{ color: currentRoute === "/listings" ?"text.primary" : "text.secondary"  }} >
                                 <ListItemIcon>
-                                    <InventoryIcon fontSize="small" color="secondary" />
+                                    <LocationCityIcon fontSize="small" sx={{ fill: currentRoute === "/listings" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
-                                Inventory
-                            </MenuItem> */}
-                            <MenuItem onClick={() => router.push("/property")}>
-                                <ListItemIcon>
-                                    <SendIcon fontSize="small" color="secondary" />
-                                </ListItemIcon>
-                                Property
+                                Listings
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/wallet")}>
+                            <MenuItem onClick={() => router.push("/wallet")} sx={{ color: currentRoute === "/wallet" ? "text.primary" : "text.secondary"  }}>
                                 <ListItemIcon>
-                                    <PeopleIcon fontSize="small" color="secondary" />
+                                    <WalletIcon fontSize="small" sx={{ fill: currentRoute === "/wallet" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
-                              Wallet
+                                Wallet
+                            </MenuItem>
+                            <MenuItem onClick={() => router.push("/chat")} sx={{ color: currentRoute === "/chat" ? "text.primary" : "text.secondary"  }}>
+                                <ListItemIcon>
+                                    <MarkChatUnreadIcon fontSize="small" sx={{ fill: currentRoute === "/chat" ? "#0AE8E7" : "text.secondary" }} />
+                                </ListItemIcon>
+                                Chat
                             </MenuItem>
                         </Box>
                     )}
@@ -172,7 +178,7 @@ export default function Navbar() {
                                 </ListItem>
                             </List>
                             <Divider />
-                           
+
                             <MenuItem onClick={() => router.push("/settings")}>
                                 <ListItemIcon>
                                     <Settings fontSize="small" color="secondary" />

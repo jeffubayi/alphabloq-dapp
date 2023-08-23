@@ -24,8 +24,8 @@ export default function Layout({ children }: Props) {
   const router = useRouter();
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
   const currentRoute:string = router.pathname;
-  const page = currentRoute.slice(0, 1)
-  console.log(`pages`,page,currentRoute)
+  const path = currentRoute.replace(/\//g, "")
+  const page = path.charAt(0).toUpperCase() + path.slice(1);
   const loginLayout = currentRoute !== "/login"
   const colorMode:Boolean = useSelector((state: RootState) => state.theme.darkMode);
   useMemo(() => {
@@ -40,7 +40,7 @@ export default function Layout({ children }: Props) {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <title> AlphabloQ </title>
+        <title> {page} | AlphabloQ  </title>
       </Head>
        {loginLayout && <Navbar />}
        <Box component="main" sx={{height:"100%",  bgcolor: 'background.default'}} >
