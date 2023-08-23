@@ -37,3 +37,22 @@ export const tiers = [
   },
   
 ];
+
+const footers = [
+  {
+    title: 'Socials',
+    description: ['Facebook', 'Instagram', 'Twitter', 'Linkedin'],
+  },
+
+
+  {
+    title: 'About',
+    description: ['About us', 'Privacy policy', 'FAQs'],
+  },
+  {
+    title: 'Contact',
+    description: [
+      'Kenya 335 Raphta Road Westlands',
+    ],
+  },
+];
