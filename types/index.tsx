@@ -12,6 +12,19 @@ export type Sellers = {
   chat: Chat;
 };
 
+export type Client = {
+  id?: string;
+  Phone: number;
+  Contact?: string;
+  Company?: string;
+  Title?:string;
+};
+
+export type Customers = {
+  customer:Client;
+};
+
+
 export type Transaction = {
   id: string;
   TrackingCode?: string;
