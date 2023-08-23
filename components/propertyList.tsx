@@ -1,37 +1,38 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import { Typography, List, Button } from '@mui/material';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import { Property } from "../types"
+import Divider from '@mui/material/Divider';
 
-export default function propertyCard(property: Property) {
-    console.log(`data`, property)
-
+export default function PropertyList(property: Property) {
+    console.log(`props`, property)
     return (
-        <Card sx={{ display: 'flex' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-
-                </Box>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="body2">
-                    {property.property.title} 
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary" component="div">
-                    {property.property.location}
-                    </Typography>
-                </CardContent>
-
-            </Box>
-            <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image="/static/images/cards/live-from-space.jpg"
-                alt="Live from space album cover"
-            />
-        </Card>
+        <List sx={{ bgcolor: 'background.paper', p: 2, borderRadius: "0.7rem" }}>
+            <Typography>Top Listings</Typography>
+            <ListItem
+            >
+                <ListItemAvatar>
+                    <Avatar src="https://alphabloq.vercel.app/_next/image?url=%2Fimages%2Fhotani.jpeg&w=1920&q=75" />
+                </ListItemAvatar>
+                <ListItemText primary="Hotani" secondary="USD 130,000" />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar src="https://alphabloq.vercel.app/_next/image?url=%2Fimages%2Fgerryville.jpeg&w=1920&q=75" />
+                </ListItemAvatar>
+                <ListItemText primary="GerryVille" secondary="USD 650,000" />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar src="https://alphabloq.vercel.app/_next/image?url=%2Fimages%2Fhotani.jpeg&w=1920&q=75" />
+                </ListItemAvatar>
+                <ListItemText primary="Kileleshwa" secondary="USD 490,000" />
+            </ListItem>
+        </List>
     );
 }

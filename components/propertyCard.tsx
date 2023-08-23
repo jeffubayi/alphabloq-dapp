@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { Card, Button, Paper, useMediaQuery, Stack, Chip, ListItemText, Grid, Box } from '@mui/material';
-import CardHeader from '@mui/material/CardHeader';
+import { Card, Button, Paper, useMediaQuery, Stack, Chip, ListItemText, Grid, Box,Tooltip } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -44,6 +43,7 @@ export default function propertyCard(property: Property) {
 
     const handleClickOpen = () => {
         setOpen(true);
+        // router.push('')
     };
 
     const handleClose = () => {
@@ -153,9 +153,11 @@ export default function propertyCard(property: Property) {
                         <IconButton size="small" aria-label="add to favorites">
                             <FavoriteIcon sx={{ fontSize: "1rem", fill: property.property.favourite ? "red" : "#fff" }} />
                         </IconButton>
-                        <IconButton size="small" aria-label="share">
-                            <ShareIcon sx={{ fontSize: "1rem" }} />
-                        </IconButton>
+                        <Tooltip title={property.property.shareUrl }>
+                            <IconButton size="small" aria-label="share">
+                                <ShareIcon sx={{ fontSize: "1rem" }} />
+                            </IconButton>
+                        </Tooltip>
                     </div>
                 </Stack>
                 <Stack
