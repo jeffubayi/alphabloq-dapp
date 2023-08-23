@@ -1,54 +1,29 @@
 import * as React from 'react';
-import StarIcon from '@mui/icons-material/StarBorder';
-import { Button, Card,  useMediaQuery, Stack, Box, CardContent, Link, CardHeader, Container, Grid, Typography } from '@mui/material';
 import { useRouter } from "next/router";
-import { tiers } from "../utility/enums";
 import Image from 'next/image'
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useUser, useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Button, Dialog, Card, ListItem, ListItemText, DialogContent, DialogTitle, CircularProgress, useMediaQuery, Stack, Box, Link, CardHeader, Container, Grid, Typography } from '@mui/material';
+
 import { supabase } from "../utility/supabaseClient";
-import { useUser, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { truncate } from 'fs';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import { tiers } from "../utility/enums";
+import Copyright from '../components/copyright';
 
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="text.secondary" href="/">
-        AlphabloQ Inc
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 //signup handleMac
 //signin skip handleMac to handlelogin
 export default function Index() {
   const router = useRouter();
-  const [open, setOpen] = React.useState(false);
-  const [account, setAccount] = React.useState<any>();
-  const [accountSet, setAccountSet] = React.useState<any>();
   const user = useUser()
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
   const session = useSession()
-  console.log(`dataaa`, user?.id, accountSet, account)
+
+  const [open, setOpen] = React.useState(false);
+  const [account, setAccount] = React.useState<any>();
+  const [accountSet, setAccountSet] = React.useState<any>();
 
   React.useEffect(() => {
     const fetchOrders = async () => {
       const { data } = await supabase.from('profiles').select(`account`).eq('id', user?.id).single();
-      console.log(`dataaa`, user?.id, data)
       setAccount(data)
 
     }
@@ -74,31 +49,12 @@ export default function Index() {
   //if session and acc
   const handleSigIn = async () => {
     const { error } = await supabase.from('profiles').update({ account: accountSet }).eq('id', user?.id);
-    if (!error && session) { router.push('/reports') }
+    if (!error && session) { router.push('/home') }
   };
 
   if (account) { handleLogin() } else {
     handleSigIn()
   }
-
-  const footers = [
-    {
-      title: 'Socials',
-      description: ['Facebook', 'Instagram', 'Twitter', 'Linkedin'],
-    },
-
-
-    {
-      title: 'About',
-      description: ['About us', 'Privacy policy', 'FAQs'],
-    },
-    {
-      title: 'Contact',
-      description: [
-        'Kenya 335 Raphta Road Westlands',
-      ],
-    },
-  ];
 
 
   return (
@@ -115,7 +71,7 @@ export default function Index() {
           </DialogTitle>
           <DialogContent>
             {!account ? (
-              <Stack direction="column" spacing={2}>
+              <Stack direction="row" spacing={2}>
                 <Card sx={{ borderRadius: "0.7rem" }} onClick={() => setAccountSet('Client')}>
                   <CardHeader
                     title=" Seller"
@@ -159,25 +115,25 @@ export default function Index() {
           >
             <Typography
               component="h1"
-              variant={isSmallScreen ? "h5":"h4"}
-              align={isSmallScreen ? "center" :"left"}
+              variant={isSmallScreen ? "h5" : "h4"}
+              align={isSmallScreen ? "center" : "left"}
               color="text.primary"
               gutterBottom
 
             >
               The Future of Real Estate <br></br> Investing Simplified
             </Typography>
-            <Typography variant="subtitle2" align={isSmallScreen ? "center" :"left"} color="text.secondary" component="p">
+            <Typography variant="subtitle2" align={isSmallScreen ? "center" : "left"} color="text.secondary" component="p">
               alphabloQ is a real estate investment platform that reduces the entry barrier for real estate investors by enabling investors to purchase a fraction of income-generating properties
 
             </Typography>
-          
-            <div style={{display:"flex",justifyContent:isSmallScreen ? "center" :"left"}}
-          >
-            <Button variant="contained" size={isSmallScreen ? "small" :"medium"} sx={{ mt: 4, borderRadius: "0.5rem", px: 4 }}>
-              Join our waiting list
-            </Button>
-          </div>
+
+            <div style={{ display: "flex", justifyContent: isSmallScreen ? "center" : "left" }}
+            >
+              <Button variant="contained" size={isSmallScreen ? "small" : "medium"} sx={{ mt: 4, borderRadius: "0.5rem", px: 4 }}>
+                Join our waiting list
+              </Button>
+            </div>
           </Grid>
           <Grid
             item

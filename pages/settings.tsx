@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { useSession, useUser } from '@supabase/auth-helpers-react'
-import { TextField, Grid, Button, Box, List, ListItem, Skeleton, ListItemIcon, ListItemText, ListSubheader, Paper, Switch, Tab, Tabs, Typography } from '@mui/material';
+import { TextField, MenuItem,Grid, Button, Box, List, ListItem, Skeleton, ListItemIcon, ListItemText, ListSubheader, Paper, Switch, Tab, Tabs, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -155,7 +155,7 @@ export default function About() {
                     website={website}
                 />
             </Grid>
-            <Grid item xs={12} md={8} sx={{mb:60}}>
+            <Grid item xs={12} md={8} sx={{ mb: 60 }}>
 
                 <Paper sx={{ width: '100%', px: 2, py: 4, borderRadius: "0.7rem", mt: 2 }} elevation={0} >
 
@@ -195,10 +195,18 @@ export default function About() {
                                     </Grid>
 
                                     <Grid item xs={12}  >
-                                        <TextField select fullWidth size="small" label="Account" type="text" value={company || ''} onChange={(e) => setCompany(e.target.value)} >
-                                            <option>Seller</option>
-                                            <option>Buyer</option>
-                                            </TextField>
+                                        <TextField select fullWidth size="small" value={company || ''}
+                                            onChange={(e) => setCompany(e.target.value)}
+                                            type="search"
+                                            label="Select Account"
+                                        >
+                                            <MenuItem value="seller">
+                                                Seller
+                                            </MenuItem>
+                                            <MenuItem value="buyer">
+                                                Buyer
+                                            </MenuItem>
+                                        </TextField>
                                     </Grid>
                                     <Grid item xs={12} >
                                         <Button

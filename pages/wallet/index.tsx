@@ -10,7 +10,7 @@ import { supabase } from "../../utility/supabaseClient";
 import Fab from "../../components/Fab";
 
 export default function Orders() {
-  const page = "Request"
+  const page = "Transaction"
   const [isLoading, setIsLoading] = useState(true)
   const [orders, setOrders] = useState<Order | any>([])
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
