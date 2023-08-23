@@ -3,6 +3,7 @@ import { retoolApi } from "./hooks";
 import theme from "./themeSlice";
 import userProfileReducer from './userProfileSlice';
 import loginStateReducer from './loginSlice';
+import listingReducer from './listingSlice';
 import reportStateReducer from './reportsSlice';
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
         userProfile: userProfileReducer,
         isLoggedIn:loginStateReducer,
         reports:reportStateReducer,
+        listing:listingReducer,
         [retoolApi.reducerPath]: retoolApi.reducer,
     },
 
