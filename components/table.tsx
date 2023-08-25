@@ -26,6 +26,7 @@ export default function Table(props: Props) {
 
             {
                 field: "RequestCode",
+                headerName:"Name",
                 flex: 1,
                 renderCell: (params: GridRenderCellParams<Order>) => (
                     <Link href="#">{params.row.TrackingCode
@@ -34,10 +35,12 @@ export default function Table(props: Props) {
             },
             {
                 field: "Category",
+                headerName:"Amount",
                 flex: 1,
             },
             {
                 field: "CreatedAt",
+                headerName:"Date",
                 sort: "desc",
                 sortable: true,
                 flex: 1,

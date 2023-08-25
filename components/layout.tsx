@@ -43,7 +43,7 @@ export default function Layout({ children }: Props) {
         <title> {page} | AlphabloQ  </title>
       </Head>
        {loginLayout && <Navbar />}
-       <Box component="main" sx={{height:"100%",  bgcolor: 'background.default'}} >
+       <Box component="main" sx={{height:"100vh",  bgcolor: 'background.default'}} >
         <Container  disableGutters maxWidth={loginLayout ? "md" :"xl"} component="main"  >
           {children}
         </Container>

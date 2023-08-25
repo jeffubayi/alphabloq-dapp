@@ -14,7 +14,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
     {
-        label: 'Goč, Serbia',
+        label: '1',
         imgPath:
             'https://alphabloq.io/img/6.09306367.jpg',
     },
@@ -34,7 +34,7 @@ const images = [
             'https://alphabloq.io/img/3.ea9effb0.jpg',
     },
     {
-        label: 'Goč, Serbia',
+        label: '2',
         imgPath:
             'https://alphabloq.io/img/5.77007ffc.jpg',
     },

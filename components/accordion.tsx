@@ -5,7 +5,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function Accordions() {
+export default function Accordions(extra: any) {
+  const {
+    floor,
+    dsq,
+    roof,
+    villa 
+  } = extra.extra
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -22,9 +28,9 @@ export default function Accordions() {
           id="panel1bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-           Typical Floor
+            Typical Floor
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>153ft</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>{floor}ft</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -41,7 +47,7 @@ export default function Accordions() {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Bedroom + DSQ(H3+)</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-          153ft
+            {dsq}ft
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -62,7 +68,7 @@ export default function Accordions() {
             Rooftop
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-          153ft
+            {roof}ft
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -80,7 +86,7 @@ export default function Accordions() {
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>Garden Villa</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
-          153ft
+            {villa}ft
           </Typography>
         </AccordionSummary>
         <AccordionDetails>

@@ -36,8 +36,8 @@ export default function LabelBottomNavigation() {
         icon={<WalletIcon />}
       />
       <BottomNavigationAction
-        label="Chat"
-        value="chat"
+        label="Agents"
+        value="agents"
         icon={<MarkChatUnreadIcon  />}
       />
     </BottomNavigation>

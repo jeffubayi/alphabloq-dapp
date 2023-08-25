@@ -106,11 +106,11 @@ export default function Navbar() {
                                 </ListItemIcon>
                                 Wallet
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/chat")} sx={{ color: currentRoute === "/chat" ? "text.primary" : "text.secondary"  }}>
+                            <MenuItem onClick={() => router.push("/agents")} sx={{ color: currentRoute === "/agents" ? "text.primary" : "text.secondary"  }}>
                                 <ListItemIcon>
-                                    <MarkChatUnreadIcon fontSize="small" sx={{ fill: currentRoute === "/chat" ? "#0AE8E7" : "text.secondary" }} />
+                                    <MarkChatUnreadIcon fontSize="small" sx={{ fill: currentRoute === "/agents" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
-                                Chat
+                               Agents
                             </MenuItem>
                         </Box>
                     )}
