@@ -12,19 +12,6 @@ export type Sellers = {
   chat: Chat;
 };
 
-export type Client = {
-  id?: string;
-  Phone: number;
-  Contact?: string;
-  Company?: string;
-  Title?:string;
-};
-
-export type Customers = {
-  customer:Client;
-};
-
-
 export type Transaction = {
   id: string;
   TrackingCode?: string;
@@ -44,7 +31,7 @@ export interface Listing  {
   title: string,
   location: string,
   price: string | number,
-  rating: number,
+  rating: number | string | undefined ,
   favourite: boolean,
   details: string,
   about: string,
@@ -61,3 +48,30 @@ export interface Listing  {
 export type Property = {
   property: Listing,
 }
+
+
+
+
+export type Client = {
+  id?: string;
+  Phone: number;
+  Contact?: string;
+  Company?: string;
+  Title?:string;
+};
+
+export type Customers = {
+  customer:Client;
+};
+
+export type Order = {
+  id: string;
+  TrackingCode?: string;
+  Category?: string;
+  CreatedAt?: Date;
+ Status?:string;
+};
+
+export type Orders = {
+  order:Order;
+};
