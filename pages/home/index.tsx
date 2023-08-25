@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import StarIcon from '@mui/icons-material/StarBorder';
-import { Button, Paper, Card, CardActions, CardContent, CardHeader, Container, Grid, Typography } from '@mui/material';
-import { useRouter } from "next/router";
+import { Paper, Card, CardHeader, Container, Grid } from '@mui/material';
+
 import PropertyList from "../../components/propertyList"
 import WalletList from '../../components/walletList'
 import fetchData from "../../utility/fetchData"
+import TransactionChart from '../../components/chart';
+import TransactionPieChart from '../../components/pieChart'
 import { Listing } from "../../types";
 
 export default function Reports() {
-  const router = useRouter();
-  const [item, setItem] = useState<number | any>([]);
   const [listings, setListings] = useState<Listing | any>([])
   const [order, setOrder] = useState<number | any>(0);
   const [client, setClients] = useState<number | any>([]);
@@ -32,13 +31,14 @@ export default function Reports() {
       count: listings?.length,
     },
     {
+      title: "Total Agents",
+      count: client?.length,
+    },
+    {
       title: "Wallet Balance",
       count: order?.length,
     },
-    {
-      title: "Total Sellers",
-      count: client?.length,
-    },
+
   ];
 
   return (
@@ -65,36 +65,47 @@ export default function Reports() {
               </Card>
             </Grid>
           ))}
-           <Grid
+          <Grid
             item
             xs={12}
             md={8}
           >
-            <Paper sx={{ borderRadius: "0.7rem" }}>
-              <WalletList
-              // property={listings}
-              />
+            <Paper sx={{ borderRadius: "0.6rem" }}>
+              <PropertyList />
             </Paper>
           </Grid>
+
           <Grid
             item
             xs={12}
             md={4}
           >
-            <Paper sx={{ borderRadius: "0.7rem" }}>
-              <PropertyList property={listings} />
+            <Paper sx={{ borderRadius: "0.6rem" }}>
+              <WalletList
+              />
             </Paper>
           </Grid>
-         
+
           <Grid
             item
             xs={12}
-            md={12}
+            md={8}
           >
-            <Paper sx={{ p: 2, borderRadius: "0.7rem", mb: 70 }}>
-              Wallet Transactions
+            <Paper sx={{ p: 2, borderRadius: "0.6rem", mb: 5 }}>
+              <TransactionChart />
             </Paper>
           </Grid>
+
+          <Grid
+            item
+            xs={12}
+            md={4}
+          >
+            <Paper sx={{ p: 2, borderRadius: "0.6rem", mb: 5 }}>
+              <TransactionPieChart />
+            </Paper>
+          </Grid>
+
         </Grid>
       </Container>
     </React.Fragment>

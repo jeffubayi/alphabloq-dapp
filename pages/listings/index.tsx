@@ -31,7 +31,7 @@ export default function Listing() {
             {isLoading ? (<Loader />) : (
                 <Grid container spacing={3}>
                     {listings.map((listing: Listing) => (
-                        <Grid key={listing.id} item md={4} sm={6}>
+                        <Grid key={listing.id} item md={4} sm={12}>
                             <PropertyCard property={listing} />
                         </Grid>
                     ))}

@@ -9,7 +9,7 @@ import Fab from "../../components/Fab";
 import { Customers, Client } from "../../types";
 
 export default  function Clients() {
-    const page = "Chat"
+    const page = "Agent"
     const [isLoading, setIsLoading] = useState(true)
     const [clients, setClients] = useState<Customers | any>([])
     const isSmallScreen = useMediaQuery("(max-width: 600px)");
@@ -29,7 +29,7 @@ export default  function Clients() {
     }
     return (
         <Box sx={{ p: 2 }}>
-            {isSmallScreen ? <Fab /> : <CardTitle title={page} /> }
+            {isSmallScreen && <Fab />  }
             {isLoading ? (<Loader />) : (
                 <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: "0.7rem" }}>
                     {clients.map((client: Client) => (
