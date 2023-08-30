@@ -9,8 +9,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { TransitionProps } from '@mui/material/transitions';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-
-import { JokesValues } from "../../types";
 import {
     useDeleteJokeMutation,
     useUpdateJokeMutation,
@@ -26,7 +24,7 @@ export default function EditDialog() {
     const [open, setOpen] = React.useState(true);
     const { id, method, Title, Author, Body, Views, CreatedAt } = router.query;
     //initial form values
-    const initialValues: JokesValues = {
+    const initialValues: any = {
         Title,
         Body,
         Author,
@@ -64,7 +62,7 @@ export default function EditDialog() {
 
     //create or edit joke based on method
     const handleSubmit = async (
-        values: JokesValues,
+        values: any,
     ) => {
         if (method === "Edit" && id != null) {
             await updateJoke({ id, values })
