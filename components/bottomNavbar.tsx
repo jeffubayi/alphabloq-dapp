@@ -27,7 +27,7 @@ export default function LabelBottomNavigation() {
       />
       <BottomNavigationAction
         label="Listings"
-        value="property"
+        value="listings"
         icon={<LocationCityIcon />}
       />
        <BottomNavigationAction
@@ -38,7 +38,7 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Agents"
         value="agents"
-        icon={<MarkChatUnreadIcon  />}
+        icon={<PeopleIcon />}
       />
     </BottomNavigation>
     </Paper>
