@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Card, Chip,CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
-import { Inventory } from "../types"
 
-export default function ItemCard(product: Inventory) {
+
+export default function ItemCard() {
   return (
     <Card sx={{ borderRadius: "0.4rem",maxWidth:250,minWidth:150, }} >
       <CardActionArea>
@@ -10,18 +10,18 @@ export default function ItemCard(product: Inventory) {
           component="img"
           height="200"
           width="50"
-          image={product.product.Picture}
+          image="/"
           alt="item image"
         />
         <CardContent>
         <Typography variant="caption" color="primary">
-        {product.product.Collection}
+        hello
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="div">
-            {product.product.Item}
+            mr
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            Ksh {product.product.Price}
+            Ksh 
           </Typography>
         </CardContent>
       </CardActionArea>
