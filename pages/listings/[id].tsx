@@ -112,7 +112,7 @@ export default function ListingDialog() {
                                 </div>
                             </Stack>
                             <div>
-                                <Rating defaultValue={rating} precision={0.5} />
+                                <Rating defaultValue={4.5} precision={0.5} />
                             </div>
                             <ListItemText primary="Price" secondary={
                                 <Stack
