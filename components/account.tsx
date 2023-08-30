@@ -17,29 +17,31 @@ export default function CheckboxListSecondary() {
   const user = useUser();
 
   useEffect(() => {
-    getInvites()
-  }, [emailInvites])
+    async function getInvites() {
+      try {
+        if (!user) throw new Error('No user')
+        let { data, error, status } = await supabase
+          .from('invites')
+          .select('*')
+          .eq('created_by', user?.email)
 
-  async function getInvites() {
-    try {
-      if (!user) throw new Error('No user')
-      let { data, error, status } = await supabase
-        .from('invites')
-        .select('*')
-        .eq('created_by', user?.email)
+        if (error && status !== 406) {
+          throw error
+        }
 
-      if (error && status !== 406) {
-        throw error
+        if (data) {
+          setEmailInvites(data);
+        }
+      } catch (error) {
+        toast.error('Error loading user data!');
+        console.log(error)
       }
-
-      if (data) {
-        setEmailInvites(data);
-      }
-    } catch (error) {
-      toast.error('Error loading user data!');
-      console.log(error)
     }
-  }
+
+    getInvites()
+  }, [emailInvites, user])
+
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };

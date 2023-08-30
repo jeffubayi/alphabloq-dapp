@@ -44,7 +44,7 @@ export default function Navbar() {
         }
 
         fetchOrders()
-    }, [])
+    }, [user?.id])
 
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {

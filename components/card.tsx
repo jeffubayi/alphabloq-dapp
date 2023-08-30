@@ -19,22 +19,23 @@ export default function ProfileCard({ url, onUpload, username, website }: Profil
   const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
-    if (url) downloadImage(url)
-  }, [url])
-
-  async function downloadImage(path: any) {
-    try {
-      const { data, error } = await supabase.storage.from('avatars').download(path)
-      if (error) {
-        throw error
+    async function downloadImage(path: any) {
+      try {
+        const { data, error } = await supabase.storage.from('avatars').download(path)
+        if (error) {
+          throw error
+        }
+        const url = URL.createObjectURL(data)
+        setAvatarUrl(url)
+        console.log('Error downloading image: ', data)
+      } catch (error) {
+        console.log('Error downloading image: ', error)
       }
-      const url = URL.createObjectURL(data)
-      setAvatarUrl(url)
-      console.log('Error downloading image: ', data)
-    } catch (error) {
-      console.log('Error downloading image: ', error)
     }
-  }
+    if (url) downloadImage(url)
+  }, [supabase.storage, url])
+
+
 
   async function uploadAvatar(event: any) {
     try {

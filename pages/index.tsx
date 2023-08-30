@@ -29,11 +29,8 @@ export default function Index() {
     }
 
     fetchOrders()
-  }, [])
+  }, [user?.id])
 
-  const handleClickOpen = (type: any) => {
-    setAccountSet(type)
-  };
 
   const handleClose = () => {
     setOpen(false);
