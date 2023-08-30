@@ -73,7 +73,7 @@ export default function propertyCard(property: Property | any) {
     return (
         <div>
 
-            <Card sx={{ minWidth: isSmallScreen ? 350 : 270, borderRadius: "0.5rem" }}>
+            <Card sx={{ minWidth: isSmallScreen ? 350 : 270, borderRadius: "0.5rem",cursor:"pointer" }} onClick={handleClickOpen}>
                 <CardMedia
                     component="img"
                     height="220"

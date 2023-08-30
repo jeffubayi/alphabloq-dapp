@@ -1,20 +1,23 @@
 import React, { useMemo, useEffect } from 'react';
-import { DataGrid, GridToolbar, GridRowParams, GridColDef, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
-import {  Link } from '@mui/material';
+import { DataGrid, GridToolbar, GridRowParams, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
+import { Link, Typography } from '@mui/material';
 import { useLocalStorage } from 'react-use';
 import { useRouter } from "next/router";
-
-import { Order } from "../types";
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import { renderViewsComponent } from "./viewsChip";
 import { timeConverter } from "../utility/formatters";
 
 interface Props {
-    rows: Order[];
+    rows: any;
     loading: boolean;
 }
 
 export default function Table(props: Props) {
     const { rows, loading } = props
+    console.log(`wallet`, rows)
     const router = useRouter();
     const [paginationModel, setPaginationModel] = useLocalStorage("pagination", {
         pageSize: 5,
@@ -25,31 +28,47 @@ export default function Table(props: Props) {
         () => [
 
             {
-                field: "RequestCode",
-                headerName:"Name",
-                flex: 1,
-                renderCell: (params: GridRenderCellParams<Order>) => (
-                    <Link href="#">{params.row.TrackingCode
-                    }</Link>
+                field: "name",
+                headerName: "Name",
+                flex: 2,
+                renderCell: (params: GridRenderCellParams<any>) => (
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar src={params.row.imageUrl} />
+                        </ListItemAvatar>
+                        <ListItemText primary={params.row.name} secondary={params.row.value} />
+                    </ListItem>
                 ),
             },
             {
-                field: "Category",
-                headerName:"Amount",
-                flex: 1,
+                field: "amount",
+                headerName: "Amount",
+                renderCell: (params: GridRenderCellParams<any>) => (
+                    <Typography color="text.secondary">
+                        {params.row.amount}
+                    </Typography>
+                ),
             },
             {
-                field: "CreatedAt",
-                headerName:"Date",
+                field: "created_at",
+                headerName: "Date",
                 sort: "desc",
                 sortable: true,
                 flex: 1,
-              
+                valueGetter: (params: GridValueGetterParams) => {
+                    return (
+                        
+                            timeConverter(params.row.created_at)
+                        
+                    )
+                },
+
             },
             {
-                field: "Status",
-                renderCell: (params: GridRenderCellParams<Order>) => (
-                    renderViewsComponent(params.row.Status)
+                field: "status",
+                headerName: "Status",
+                renderCell: (params: GridRenderCellParams<any>) => (
+                    renderViewsComponent(params.row.status)
                 ),
             },
         ],
@@ -99,7 +118,7 @@ export default function Table(props: Props) {
             columns={columns}
             loading={loading}
             getRowId={(row) => row.id}
-            onRowClick={onRowClick}
+            // onRowClick={onRowClick}
             pageSizeOptions={[5, 10]}
             paginationModel={paginationModel}
             onPaginationModelChange={setPaginationModel}

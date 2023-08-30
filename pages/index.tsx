@@ -112,7 +112,7 @@ export default function Index() {
           >
             <Typography
               component="h1"
-              variant={isSmallScreen ? "h5" : "h4"}
+              variant={isSmallScreen ? "h5" : "h3"}
               align={isSmallScreen ? "center" : "left"}
               color="text.primary"
               gutterBottom
@@ -137,7 +137,7 @@ export default function Index() {
             xs={12}
             md={6}
           >
-            <Image src="/hero.png" alt="hero" width={300} height={300} quality={97} />
+            <Image src="/hero.png" alt="hero" width={350} height={350} quality={97} />
           </Grid>
         </Grid>
       </Container>

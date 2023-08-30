@@ -105,7 +105,7 @@ const ReportAreaChart = () => {
         <Grid item xs={12}>
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item>
-              <Typography>Recent Transactions</Typography>
+              <Typography>Yearly Transactions</Typography>
             </Grid>
             <Grid item>
               <Chip
@@ -126,11 +126,73 @@ const ReportAreaChart = () => {
         series={[
       {
         name: "Sell",
-        data: [13, 54, 10, 74, 12, 23],
+        data: [        {
+          x: "Jan",
+          y: 2,
+      },
+      {
+          x: "Feb",
+          y: 4,
+      },
+      {
+          x: "Mar",
+          y:6,
+      },
+      {
+          x: "Apr",
+          y: 1,
+      },
+      {
+          x: "May",
+          y: 9,
+      },
+      {
+          x: "Jun",
+          y: 5,
+      },
+      {
+          x: "Jul",
+          y: 6,
+      },
+      {
+          x: "Aug",
+          y: 3,
+      },],
       },
       {
         name: "Buy",
-        data: [23, 34, 12, 54, 32, 43],
+        data: [{
+          x: "Jan",
+          y: 6,
+      },
+      {
+          x: "Feb",
+          y: 2,
+      },
+      {
+          x: "Mar",
+          y:1,
+      },
+      {
+          x: "Apr",
+          y: 6,
+      },
+      {
+          x: "May",
+          y: 3,
+      },
+      {
+          x: "Jun",
+          y: 7,
+      },
+      {
+          x: "Jul",
+          y: 5,
+      },
+      {
+          x: "Aug",
+          y: 3,
+      }],
       },
     ]}
         type="area"

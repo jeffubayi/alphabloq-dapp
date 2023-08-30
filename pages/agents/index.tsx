@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, useMediaQuery } from '@mui/material';
+import { Container, List, useMediaQuery } from '@mui/material';
 
 import ClientList from "../../components/customerList"
 import CardTitle from "../../components/addAction";
@@ -28,7 +28,7 @@ export default  function Clients() {
         return <p>No {page}s found.</p>
     }
     return (
-        <Box sx={{ p: 2 }}>
+        <Container maxWidth="md" component="main"sx={{ py: 6,px:2 }}>
             {isSmallScreen && <Fab />  }
             {isLoading ? (<Loader />) : (
                 <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: "0.7rem" }}>
@@ -40,6 +40,6 @@ export default  function Clients() {
                 </List>
             )}
 
-        </Box>
+        </Container>
     );
 }

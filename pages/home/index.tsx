@@ -81,8 +81,7 @@ export default function Reports() {
             md={4}
           >
             <Paper sx={{ borderRadius: "0.6rem" }}>
-              <WalletList
-              />
+              <WalletList/>
             </Paper>
           </Grid>
 

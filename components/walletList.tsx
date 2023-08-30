@@ -9,7 +9,7 @@ import CommentIcon from '@mui/icons-material/Add';
 export default function WalletList() {
   return (
     <List sx={{ width: '100%',  p: 2, borderRadius: "0.7rem" }}>
-      <Typography>Wallets</Typography>
+      <Typography>Connect Wallet</Typography>
       <ListItem
        >
         <ListItemAvatar>
@@ -27,9 +27,9 @@ export default function WalletList() {
       <ListItem
        >
         <ListItemAvatar>
-          <Avatar src="https://s2.coinmarketcap.com/static/img/coins/200x200/5964.png" />
+          <Avatar src="https://workablehr.s3.amazonaws.com/uploads/account/open_graph_logo/492879/social?1675329233000" />
         </ListItemAvatar>
-        <ListItemText primary="Trustwallet" secondary="Smartchain" />
+        <ListItemText primary="WalletConnect" secondary="Bitcoin" />
       </ListItem>
     </List >
   );

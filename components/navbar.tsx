@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { useRouter } from "next/router";
 import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import { useMediaQuery, IconButton, Button, AppBar, Avatar, Box, CssBaseline, Divider, GlobalStyles, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
+import { useMediaQuery, IconButton, Button, AppBar, Avatar, Box, Stack, Divider, GlobalStyles, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import { Settings } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import Image from 'next/image'
@@ -13,6 +13,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import WalletIcon from '@mui/icons-material/Wallet';
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
+import PeopleIcon from '@mui/icons-material/People';
+
 import { supabase } from "../utility/supabaseClient";
 import { toggleColorMode } from '../redux/themeSlice';
 import { clearUserProfile } from '../redux/userProfileSlice'
@@ -94,23 +96,23 @@ export default function Navbar() {
                                 </ListItemIcon>
                                 Home
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/listings")} sx={{ color: currentRoute === "/listings" ?"text.primary" : "text.secondary"  }} >
+                            <MenuItem onClick={() => router.push("/listings")} sx={{ color: currentRoute === "/listings" ? "text.primary" : "text.secondary" }} >
                                 <ListItemIcon>
                                     <LocationCityIcon fontSize="small" sx={{ fill: currentRoute === "/listings" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
                                 Listings
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/wallet")} sx={{ color: currentRoute === "/wallet" ? "text.primary" : "text.secondary"  }}>
+                            <MenuItem onClick={() => router.push("/wallet")} sx={{ color: currentRoute === "/wallet" ? "text.primary" : "text.secondary" }}>
                                 <ListItemIcon>
                                     <WalletIcon fontSize="small" sx={{ fill: currentRoute === "/wallet" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
                                 Wallet
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/agents")} sx={{ color: currentRoute === "/agents" ? "text.primary" : "text.secondary"  }}>
+                            <MenuItem onClick={() => router.push("/agents")} sx={{ color: currentRoute === "/agents" ? "text.primary" : "text.secondary" }}>
                                 <ListItemIcon>
-                                    <MarkChatUnreadIcon fontSize="small" sx={{ fill: currentRoute === "/agents" ? "#0AE8E7" : "text.secondary" }} />
+                                    <PeopleIcon fontSize="small" sx={{ fill: currentRoute === "/agents" ? "#0AE8E7" : "text.secondary" }} />
                                 </ListItemIcon>
-                               Agents
+                                Agents
                             </MenuItem>
                         </Box>
                     )}
@@ -185,7 +187,7 @@ export default function Navbar() {
                                 </ListItemIcon>
                                 Account
                             </MenuItem>
-                            <MenuItem onClick={() => router.push("/")}>
+                            <MenuItem onClick={() => router.push("/wallet")}>
                                 <ListItemIcon>
                                     <HomeIcon fontSize="small" color="secondary" />
                                 </ListItemIcon>

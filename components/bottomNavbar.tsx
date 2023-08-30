@@ -18,7 +18,7 @@ export default function LabelBottomNavigation() {
   };
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 , mt:2}} elevation={3}>
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 , mt:3}} elevation={3}>
     <BottomNavigation  showLabels value={value} onChange={handleChange}>
       <BottomNavigationAction
         label="Home"

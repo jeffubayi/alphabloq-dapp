@@ -113,7 +113,7 @@ const ReportAreaChart = () => {
             </Grid>
             <ReactApexChart
                 options={options}
-                series={[500, 600]}
+                series={[900, 550]}
                 type="donut"
                 height={200}
             />

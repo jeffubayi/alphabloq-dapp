@@ -12,7 +12,7 @@ function getColorForViews(views: string) {
     return orange;
   } else if (views ==  "in-transit") {
     return yellow;
-  } else if (views == "delivered") {
+  } else if (views == "complete") {
     return green;
   } else {
     return "default"; // Default color if the number of views doesn't match any range
@@ -25,7 +25,7 @@ export function renderViewsComponent(views: any) {
   return <Chip
     size="small"
     variant="outlined"
-    label={views == "delivered" ? "complete" : views}
+    label={views}
     sx={{
       borderRadius: "10px", 
       color: color,

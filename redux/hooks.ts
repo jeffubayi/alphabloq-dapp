@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { supabase } from "../utility/supabaseClient";
 
 export const retoolApi = createApi({
   reducerPath: "retoolApi",
@@ -6,7 +7,17 @@ export const retoolApi = createApi({
   tagTypes: ["Jokes"],
   endpoints: (builder) => ({
     getJokes: builder.query<any[], void>({
-      query: () => "/user/details",
+      queryFn: async () => {
+        const {data, error} = await supabase
+          .from('listings')
+          .select('*')
+
+        if (error) {
+          throw { error };
+        }
+
+        return { data };
+      },
       providesTags: ["Jokes"],
     }),
     createJoke: builder.mutation<void, Partial<any>>({
